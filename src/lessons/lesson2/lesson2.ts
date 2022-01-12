@@ -29,10 +29,10 @@ console.log('lesson 2');
 function curry(f) { // curry(f) выполняет каррирование
 
     // @ts-ignore
-    return function(a) {
+    return function (a) {
 
         // @ts-ignore
-        return function(b) {
+        return function (b) {
             return f(a, b);
         };
     };
@@ -42,8 +42,9 @@ function curry(f) { // curry(f) выполняет каррирование
 function sum(a, b) {
     return a + b;
 }
-let curriedSum = curry(sum) ;
-console.log( curriedSum(3)(6) ) // 9
+
+let curriedSum = curry(sum);
+console.log(curriedSum(3)(6)) // 9
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -53,19 +54,20 @@ console.log( curriedSum(3)(6) ) // 9
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+// @ts-ignore
 function makeCounter() {
     let count = 1;
-    return function() {
+    return function () {
         return count++;
     };
 }
 let counter = makeCounter();
 let counter2 = makeCounter()
-console.log( counter() ); // 1
-console.log( counter() ); // 2
+console.log(counter()); // 1
+console.log(counter()); // 2
 
-console.log( counter2() ); //1
-console.log( counter() ); // 3
+console.log(counter2()); //1
+console.log(counter()); // 3
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
 // и возвращала следующий объект методов:
@@ -73,6 +75,35 @@ console.log( counter() ); // 3
 // decrease: -1
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
+// @ts-ignore
+function makeCounter(start) {
+    // @ts-ignore
+    this.increase = function() {
+        return ++start;
+    };
+    // @ts-ignore
+    this.decrease = function() {
+        return --start;
+    };
+    // @ts-ignore
+    this.reset = function() {
+        return start > 0 ? 0 : start;
+    };
+    // @ts-ignore
+    this.set = function(n) {
+        return start === n ? start : n;
+    }
+}
+// @ts-ignore
+let count = new makeCounter(2);
+
+console.log(count.increase()); // 3
+console.log(count.increase()); // 4
+console.log(count.decrease()) //3
+console.log(count.reset()) //0
+console.log(count.set(5)) //0
+
+
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
@@ -93,4 +124,5 @@ console.log( counter() ); // 3
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
 // just a plug
-export default () => {};
+export default () => {
+};
