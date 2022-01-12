@@ -115,6 +115,31 @@ console.log(count.set(5)) //0
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
 
+// @ts-ignore
+ function SuperSum(num) {
+    if (num<=0) return 0
+     // @ts-ignore
+     if (num===1) return m => m
+     // @ts-ignore
+     let arguments = []
+     // @ts-ignore
+     function helper(...args) {
+         // @ts-ignore
+         arguments = [...arguments,...args]
+         if(arguments.length>=num){
+             arguments.length=num
+             // @ts-ignore
+             return arguments.reduce((acc,p)=>acc + p)
+         }
+         else {
+             return helper
+         }
+     }
+     return helper
+}
+// @ts-ignore
+console.log(SuperSum(3)(2,5)(3))
+
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
 // Task 05
