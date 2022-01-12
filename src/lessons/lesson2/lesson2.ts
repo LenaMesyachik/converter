@@ -42,8 +42,8 @@ function curry(f) { // curry(f) выполняет каррирование
 function sum(a, b) {
     return a + b;
 }
-let curriedSum = curry(sum);
-alert( curriedSum(3)(6) ) // 9
+let curriedSum = curry(sum) ;
+console.log( curriedSum(3)(6) ) // 9
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -53,7 +53,19 @@ alert( curriedSum(3)(6) ) // 9
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+function makeCounter() {
+    let count = 1;
+    return function() {
+        return count++;
+    };
+}
+let counter = makeCounter();
+let counter2 = makeCounter()
+console.log( counter() ); // 1
+console.log( counter() ); // 2
 
+console.log( counter2() ); //1
+console.log( counter() ); // 3
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
 // и возвращала следующий объект методов:
