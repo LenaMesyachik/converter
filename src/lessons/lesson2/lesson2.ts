@@ -24,6 +24,27 @@ console.log('lesson 2');
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 
+
+// @ts-ignore
+function curry(f) { // curry(f) выполняет каррирование
+
+    // @ts-ignore
+    return function(a) {
+
+        // @ts-ignore
+        return function(b) {
+            return f(a, b);
+        };
+    };
+}
+
+// @ts-ignore
+function sum(a, b) {
+    return a + b;
+}
+let curriedSum = curry(sum);
+alert( curriedSum(3)(6) ) // 9
+
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
 // const counter = makeCounter();
