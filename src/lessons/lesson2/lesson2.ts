@@ -147,6 +147,22 @@ console.log(SuperSum(3)(2,5)(3))
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
+// @ts-ignore
+function flatten (...data) {
+    const result = [];
+    for (let i = 0; i < data.length; i++) {
+        const currentEl = data[i];
+        if (Array.isArray(currentEl)) {
+            result.push(...flatten(...currentEl));
+        }
+        else  {
+            result.push(currentEl)
+        }
+    }
+    return result
+}
+
+console.log(flatten(1,[1,2],[[1,2,3],4]))
 
 // just a plug
 export default () => {
