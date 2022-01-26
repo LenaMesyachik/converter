@@ -317,6 +317,28 @@ Promise.resolve(10)
 //resolve2 40
 //error 0
 //Promise {<fulfilled>: undefined}
+
+Promise.resolve(10)
+    .then(resolve => {console.log('resolve', resolve)
+        return resolve * 2})
+    .then(resolve => {console.log('resolve2', resolve)
+        return resolve * 2})
+    .then(resolve => {console.log('resolve2', resolve)
+        throw 0})
+    .catch(error => {
+        console.log('error', error)
+        return 'hello'
+    })
+
+    .then(resolve => {console.log('resolve2', resolve)
+        // @ts-ignore
+        return resolve * 2})
+// resolve 10
+// resolve2 20
+//resolve2 40
+//error 0
+//resolve2 hello
+//Promise {<fulfilled>: NaN}
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
