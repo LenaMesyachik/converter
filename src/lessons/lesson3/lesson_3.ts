@@ -30,6 +30,49 @@ console.log(prom)
 //undefined
 //{data: 'success'}
 
+
+console.log(1)
+
+let prom2 = new Promise((resolve,reject)=>{
+    console.log(2)
+    setTimeout((response)=>{
+        console.log(3)
+        if (response.status>=200 && response.status<400 ) {
+            resolve(response.body)
+            console.log('okey')
+        }
+        else {
+            reject(response.error)
+        }
+    },200,{status:200,body:{data:'success'},error:''})
+    console.log(4)
+})
+
+
+
+prom.then((response)=>{
+    console.log(response)
+    console.log(6)
+})
+console.log(prom2)
+console.log(5)
+
+prom.then((response)=>{
+    console.log(response)
+    console.log(6)
+})
+console.log(prom)
+console.log(5)
+// 1
+// 2
+// 4
+// Promise {<pending>}
+// 5
+//undefined
+// 3
+// okey
+// {data: 'success'}
+// 6
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
