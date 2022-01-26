@@ -243,6 +243,58 @@ userDataProm.then((access_token)=>{
 
 console.log(userDataProm3)
 console.log(3)
+
+   let userDataProm4 = new Promise((resolve,reject)=>{
+    setTimeout((response)=>{
+        if (response.status>=200 && response.status<400 ) {
+            resolve(response.body.access_token)
+        }
+        else {
+            reject(response.error)
+        }
+    },1000,{status:404,body:{},error:'not found'})
+})
+
+
+
+userDataProm.then((access_token)=>{
+    console.log('access_token', access_token)
+    console.log(1)
+    return new Promise((resolve,reject)=>{
+            setTimeout((response)=>{
+                if (response.status>=200 && response.status<400 ) {
+                    resolve ({body:response.body,access_token})
+                }
+                else {
+                    reject(response.error)
+                }
+            },1000,{status:200,body:{courceName:'Promise',videoLink:'someURL'}, error:''})
+        }
+    )}, err => {console.log('err ', err)
+    console.log(1)
+    return new Promise((resolve,reject)=>{
+        setTimeout((response)=>{
+            if (response.status>=200 && response.status<400 ) {
+                resolve(response.body.access_token)
+            }
+            else {
+                reject(response.error)
+            }
+        },1000,{status:200,body:{access_token:'nkn578knkp55'},error:''})}
+    )})
+    .then((resolve)=>{
+        console.log(resolve)
+        console.log(2)})
+
+console.log(userDataProm4)
+console.log(3)
+// Promise {<pending>}
+// 3
+//undefined
+//err  not found
+// 1
+// nkn578knkp55
+//2
 // Promise{<pending>}[[Prototype]]: Promise[[PromiseState]]: "rejected"[[PromiseResult]]: "not found"
 // 3
 //undefined
