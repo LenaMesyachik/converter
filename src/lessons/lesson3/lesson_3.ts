@@ -170,8 +170,46 @@ userDataProm.then((access_token)=>{
         console.log(resolve)})
 
 console.log(userDataProm)
+ let userDataProm2 = new Promise((resolve,reject)=>{
+    setTimeout((response)=>{
+        if (response.status>=200 && response.status<400 ) {
+            resolve(response.body.access_token)
+        }
+        else {
+            reject(response.error)
+        }
+    },1000,{status:200,body:{access_token:'nkn578knkp55'},error:''})
+})
 
 
+
+userDataProm.then((access_token)=>{
+    console.log('access_token', access_token)
+    console.log(1)
+    return new Promise((resolve,reject)=>{
+            setTimeout((response)=>{
+                if (response.status>=200 && response.status<400 ) {
+                    resolve (response.body)
+                }
+                else {
+                    reject(response.error)
+                }
+            },1000,{status:200,body:{courceName:'Promise',videoLink:'someURL'}, error:''})
+        }
+    )})
+    .then((resolve)=>{
+        console.log(resolve)
+        console.log(2)})
+
+console.log(userDataProm)
+console.log(3)
+//Promise{<pending>}
+// 3
+//undefined
+// access_token nkn578knkp55
+//16 1
+//{courceName: 'Promise', videoLink: 'someURL'}
+// 2
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
