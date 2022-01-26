@@ -201,7 +201,7 @@ userDataProm.then((access_token)=>{
         console.log(resolve)
         console.log(2)})
 
-console.log(userDataProm)
+console.log(userDataProm2)
 console.log(3)
 //Promise{<pending>}
 // 3
@@ -210,6 +210,45 @@ console.log(3)
 //16 1
 //{courceName: 'Promise', videoLink: 'someURL'}
 // 2
+let userDataProm3 = new Promise((resolve,reject)=>{
+    setTimeout((response)=>{
+        if (response.status>=200 && response.status<400 ) {
+            resolve(response.body.access_token)
+        }
+        else {
+            reject(response.error)
+        }
+    },1000,{status:404,body:{},error:'not found'})
+})
+
+
+
+userDataProm.then((access_token)=>{
+    console.log('access_token', access_token)
+    console.log(1)
+    return new Promise((resolve,reject)=>{
+            setTimeout((response)=>{
+                if (response.status>=200 && response.status<400 ) {
+                    resolve ({body:response.body,access_token})
+                }
+                else {
+                    reject(response.error)
+                }
+            },1000,{status:200,body:{courceName:'Promise',videoLink:'someURL'}, error:''})
+        }
+    )})
+    .then((resolve)=>{
+        console.log(resolve)
+        console.log(2)})
+
+console.log(userDataProm3)
+console.log(3)
+// Promise{<pending>}[[Prototype]]: Promise[[PromiseState]]: "rejected"[[PromiseResult]]: "not found"
+// 3
+//undefined
+//Uncaught (in promise) not found
+//Объект Promise.then (асинхронный)
+//(анонимная) @ VM2076:28
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
