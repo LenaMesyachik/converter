@@ -301,6 +301,22 @@ console.log(3)
 //Uncaught (in promise) not found
 //Объект Promise.then (асинхронный)
 //(анонимная) @ VM2076:28
+
+Promise.resolve(10)
+    .then(resolve => {console.log('resolve', resolve)
+        return resolve * 2})
+    .then(resolve => {console.log('resolve2', resolve)
+        return resolve * 2})
+    .then(resolve => {console.log('resolve2', resolve)
+        throw 0})
+    .catch(error => {
+        console.log('error', error)
+    })
+//resolve 10
+//resolve2 20
+//resolve2 40
+//error 0
+//Promise {<fulfilled>: undefined}
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
