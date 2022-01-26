@@ -31,7 +31,6 @@ console.log(prom)
 
 
 console.log(1)
-
 let prom2 = new Promise((resolve, reject) => {
     console.log(2)
     setTimeout((response) => {
@@ -45,7 +44,6 @@ let prom2 = new Promise((resolve, reject) => {
     }, 200, {status: 200, body: {data: 'success'}, error: ''})
     console.log(4)
 })
-
 
 prom.then((response) => {
     console.log(response)
@@ -70,9 +68,7 @@ console.log(5)
 // okey
 // {data: 'success'}
 // 6
-
 console.log(1)
-
 let prom3 = new Promise((resolve, reject) => {
     console.log(2)
     setTimeout((response) => {
@@ -94,7 +90,6 @@ prom.then((response) => {
     .then((response2) => {
         console.log(response2)
     })
-
 console.log(prom3)
 console.log(5)
 // 1
@@ -107,10 +102,7 @@ console.log(5)
 //okey
 //{data: 'success'}
 // 2
-
-
-
-let prom4 = new Promise((resolve,reject)=>{
+let prom4 = new Promise((resolve,reject) => {
     console.log(2)
     setTimeout((response)=>{
         console.log(3)
@@ -124,9 +116,6 @@ let prom4 = new Promise((resolve,reject)=>{
     },200,{status:200,body:{data:'success'},error:''})
     console.log(4)
 })
-
-
-
 prom.then((response)=>{
     console.log(response)
     return 2
@@ -134,13 +123,10 @@ prom.then((response)=>{
 })
     .then((response2)=>{
         console.log(response2)
-
     })
     .then((response3)=>{
         console.log('res3', response3)
-
     })
-
 console.log(prom4)
 console.log(5)
 //1
@@ -154,6 +140,38 @@ console.log(5)
 // {data: 'success'}
 // 2
 // res3 undefined
+ let userDataProm = new Promise((resolve,reject)=>{
+    setTimeout((response)=>{
+        if (response.status>=200 && response.status<400 ) {
+            resolve(response.body.access_token)
+        }
+        else {
+            reject(response.error)
+        }
+    },1000,{status:200,body:{access_token:'nkn578knkp55'},error:''})
+})
+console.log(userDataProm)
+
+
+userDataProm.then((access_token)=>{
+    console.log('access_token', access_token)
+    return new Promise((resolve,reject)=>{
+            setTimeout((response)=>{
+                if (response.status>=200 && response.status<400 ) {
+                    resolve (response.body.access_token)
+                }
+                else {
+                    reject(response.error)
+                }
+            },1000,{status:200,body:{courceName:'Promise'},videoLink:'someURL', error:''})
+        }
+    )})
+    .then((resolve)=>{
+        console.log(resolve)})
+
+console.log(userDataProm)
+
+
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
