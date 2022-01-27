@@ -10,6 +10,9 @@ const Lesson3 = () => {
 
     const searchFilm = () => {
         API.searchFilmsByTitle(searchName)
+            .then(response => {
+                console.log(response)
+            })
     };
 
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {

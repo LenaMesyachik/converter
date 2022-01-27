@@ -10,7 +10,7 @@ console.log('lesson 3');
 // Promise
 // https://learn.javascript.ru/promise-basics
 // https://www.youtube.com/watch?v=1idOY3C1gYU
-let prom = new Promise((resolve, reject) => {
+/*let prom = new Promise((resolve, reject) => {
     setTimeout((response) => {
         if (response.status >= 200 && response.status < 400) {
             resolve(response.body)
@@ -57,7 +57,7 @@ prom.then((response) => {
     console.log(6)
 })
 console.log(prom)
-console.log(5)
+console.log(5)*/
 // 1
 // 2
 // 4
@@ -68,7 +68,7 @@ console.log(5)
 // okey
 // {data: 'success'}
 // 6
-console.log(1)
+/*console.log(1)
 let prom3 = new Promise((resolve, reject) => {
     console.log(2)
     setTimeout((response) => {
@@ -91,7 +91,7 @@ prom.then((response) => {
         console.log(response2)
     })
 console.log(prom3)
-console.log(5)
+console.log(5)*/
 // 1
 // 2
 // 4
@@ -102,7 +102,7 @@ console.log(5)
 //okey
 //{data: 'success'}
 // 2
-let prom4 = new Promise((resolve,reject) => {
+/*let prom4 = new Promise((resolve,reject) => {
     console.log(2)
     setTimeout((response)=>{
         console.log(3)
@@ -128,7 +128,7 @@ prom.then((response)=>{
         console.log('res3', response3)
     })
 console.log(prom4)
-console.log(5)
+console.log(5)*/
 //1
 //2
 //4
@@ -140,7 +140,7 @@ console.log(5)
 // {data: 'success'}
 // 2
 // res3 undefined
- let userDataProm = new Promise((resolve,reject)=>{
+/* let userDataProm = new Promise((resolve,reject)=>{
     setTimeout((response)=>{
         if (response.status>=200 && response.status<400 ) {
             resolve(response.body.access_token)
@@ -150,7 +150,8 @@ console.log(5)
         }
     },1000,{status:200,body:{access_token:'nkn578knkp55'},error:''})
 })
-console.log(userDataProm)
+console.log(userDataProm)*/
+/*
 
 
 userDataProm.then((access_token)=>{
@@ -180,10 +181,11 @@ console.log(userDataProm)
         }
     },1000,{status:200,body:{access_token:'nkn578knkp55'},error:''})
 })
+*/
 
 
 
-userDataProm.then((access_token)=>{
+/*userDataProm.then((access_token)=>{
     console.log('access_token', access_token)
     console.log(1)
     return new Promise((resolve,reject)=>{
@@ -202,7 +204,7 @@ userDataProm.then((access_token)=>{
         console.log(2)})
 
 console.log(userDataProm2)
-console.log(3)
+console.log(3)*/
 //Promise{<pending>}
 // 3
 //undefined
@@ -210,7 +212,7 @@ console.log(3)
 //16 1
 //{courceName: 'Promise', videoLink: 'someURL'}
 // 2
-let userDataProm3 = new Promise((resolve,reject)=>{
+/*let userDataProm3 = new Promise((resolve,reject)=>{
     setTimeout((response)=>{
         if (response.status>=200 && response.status<400 ) {
             resolve(response.body.access_token)
@@ -219,8 +221,9 @@ let userDataProm3 = new Promise((resolve,reject)=>{
             reject(response.error)
         }
     },1000,{status:404,body:{},error:'not found'})
-})
+})*/
 
+/*
 
 
 userDataProm.then((access_token)=>{
@@ -255,8 +258,9 @@ console.log(3)
     },1000,{status:404,body:{},error:'not found'})
 })
 
+*/
 
-
+/*
 userDataProm.then((access_token)=>{
     console.log('access_token', access_token)
     console.log(1)
@@ -287,7 +291,7 @@ userDataProm.then((access_token)=>{
         console.log(2)})
 
 console.log(userDataProm4)
-console.log(3)
+console.log(3)*/
 // Promise {<pending>}
 // 3
 //undefined
@@ -302,7 +306,7 @@ console.log(3)
 //Объект Promise.then (асинхронный)
 //(анонимная) @ VM2076:28
 
-Promise.resolve(10)
+/*Promise.resolve(10)
     .then(resolve => {console.log('resolve', resolve)
         return resolve * 2})
     .then(resolve => {console.log('resolve2', resolve)
@@ -311,12 +315,13 @@ Promise.resolve(10)
         throw 0})
     .catch(error => {
         console.log('error', error)
-    })
+    })*/
 //resolve 10
 //resolve2 20
 //resolve2 40
 //error 0
 //Promise {<fulfilled>: undefined}
+/*
 
 Promise.resolve(10)
     .then(resolve => {console.log('resolve', resolve)
@@ -333,6 +338,23 @@ Promise.resolve(10)
     .then(resolve => {console.log('resolve2', resolve)
         // @ts-ignore
         return resolve * 2})
+
+*/
+
+
+
+console.log('start')
+async function f() {
+    console.log('function start')
+    let result = await new Promise((resolve) =>
+    setTimeout(resolve,1000,'done'))
+    console.log(result)
+    console.log('function end')
+}
+
+f()
+console.log('end')
+
 // resolve 10
 // resolve2 20
 //resolve2 40
