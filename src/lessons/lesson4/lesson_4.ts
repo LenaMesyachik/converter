@@ -8,6 +8,16 @@ console.log('lesson 4');
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
 
+const promise = new Promise((resolve, reject) => {
+    console.log("Promise is created")
+})
+console.log(promise)
+//Promise is created
+// Promise{<pending>}
+// [[Prototype]]: Promise
+// [[PromiseState]]: "pending"
+// [[PromiseResult]]: undefined
+
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
