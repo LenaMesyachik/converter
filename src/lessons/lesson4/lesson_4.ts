@@ -8,10 +8,10 @@ console.log('lesson 4');
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
 
-const promise = new Promise((resolve, reject) => {
+/*const promise = new Promise((resolve, reject) => {
     console.log("Promise is created")
 })
-console.log(promise)
+console.log(promise)*/
 //Promise is created
 // Promise{<pending>}
 // [[Prototype]]: Promise
@@ -23,6 +23,16 @@ console.log(promise)
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+const promise2 = new Promise((resolve, reject) => {
+    resolve (
+        console.log('Promise Data')
+    )
+})
+promise2.then((response) => {
+    console.log(response)
+})
+console.log(promise2)
+
 
 
 // Task 03
