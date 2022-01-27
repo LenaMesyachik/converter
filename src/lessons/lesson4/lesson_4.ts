@@ -41,6 +41,7 @@ console.log(promise2)
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
+/*
 const promise3 = new Promise((resolve, reject) => {
     reject (
         console.log('Promise Error')
@@ -50,6 +51,7 @@ promise3.catch((response) => {
     console.log('err', response)
 })
 console.log(promise3)
+*/
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
@@ -57,7 +59,19 @@ console.log(promise3)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
-
+const promise4 = new Promise((resolve, reject) => {
+    setTimeout((response) => {
+        if (response.status >= 200 && response.status < 400) {
+            resolve(response.body)
+        } else {
+            reject(response.error)
+        }
+    }, 3000, {status: 200, body: {data: 'Promise Data'}, error: ''})
+})
+promise4.catch((response) => {
+    console.log('err', response)
+})
+console.log(promise4)
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:
 // promise, resolve, reject, onSuccess, onError
