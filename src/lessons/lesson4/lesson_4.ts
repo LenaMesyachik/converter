@@ -23,6 +23,7 @@ console.log(promise)*/
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+/*
 const promise2 = new Promise((resolve, reject) => {
     resolve (
         console.log('Promise Data')
@@ -32,6 +33,7 @@ promise2.then((response) => {
     console.log(response)
 })
 console.log(promise2)
+*/
 
 
 
@@ -39,7 +41,15 @@ console.log(promise2)
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
-
+const promise3 = new Promise((resolve, reject) => {
+    reject (
+        console.log('Promise Error')
+    )
+})
+promise3.catch((response) => {
+    console.log('err', response)
+})
+console.log(promise3)
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
