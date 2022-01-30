@@ -1,3 +1,6 @@
+import {rejects} from "assert";
+import {log} from "util";
+
 console.log('lesson 4');
 
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
@@ -36,7 +39,6 @@ console.log(promise2)
 */
 
 
-
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
@@ -58,7 +60,7 @@ console.log(promise3)
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
-
+/*
 const promise4 = new Promise((resolve, reject) => {
     setTimeout((response) => {
         if (response.status >= 200 && response.status < 400) {
@@ -71,7 +73,7 @@ const promise4 = new Promise((resolve, reject) => {
 promise4.catch((response) => {
     console.log('err', response)
 })
-console.log(promise4)
+console.log(promise4)*/
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:
 // promise, resolve, reject, onSuccess, onError
@@ -85,6 +87,42 @@ console.log(promise4)
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
+type handlePromiseType = {
+    promise: null | Promise<any>,
+    resolve: null | Function,
+    reject: null | Function,
+    onSuccess: (paramName: string) => void
+    onError: (paramName: string) => void
+}
+const handlePromise: handlePromiseType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (paramName: string) => {
+        console.log(`Promise is resolved with data: ${paramName}`)
+    },
+    onError: (paramName: string) => {
+        console.log(`Promise is rejected with error: ${paramName}`)
+    }
+}
+export const createPromise = () => {
+    const somePromise: Promise<any> = new Promise((resolve, reject) => {
+        handlePromise.resolve = resolve
+        handlePromise.reject = reject
+    })
+    handlePromise.promise = somePromise
+        .then(handlePromise.onSuccess)
+        .catch(handlePromise.onError)
+
+    // @ts-ignore
+    window.promObj = handlePromise
+}
+export const resolvePromise = () => {
+    handlePromise.resolve && handlePromise.resolve('ok')
+}
+export const rejectPromise = () => {
+    handlePromise.reject && handlePromise.reject('oh, no')
+}
 
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
@@ -101,6 +139,6 @@ console.log(promise4)
 // и выведите в консоль {name, age, city}
 
 
-
 // just a plug
-export default ()=>{};
+export default () => {
+};
