@@ -34,6 +34,18 @@ let someObj:someObjType = {
     name: 'Eugene',
     age: 32
 }
+function greeting ( name: string,age: number) {
+    console.log(`My name is ${name}. I am ${age}`)
+}
+
+// @ts-ignore
+someObj.f = greeting
+// @ts-ignore
+someObj.f()
+
+
+
+
 
 // Task 02
 // реализовать счетчик counter в виде объекта со следующими методами:
